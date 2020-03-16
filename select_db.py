@@ -55,7 +55,7 @@ def read_dbinfo(args):
 
 
 def run_kmc_steps(args):
-	kmc_loc = __location__ + 'KMC/bin/kmc'
+	kmc_loc = 'kmc'
 	db_60mers_loc = args.data + 'cmash_db_n1000_k60_dump'
 	if args.input_type == 'fastq':
 		type_arg = '-fq'
@@ -85,8 +85,8 @@ def run_cmash_and_cutoff(args, taxid2info):
 	cmash_filter_loc = args.data + 'cmash_filter_n1000_k60_30-60-10.bf'
 	if args.cmash_results == 'NONE':
 		cmash_out = args.temp_dir + 'cmash_query_results.csv'
-		script_loc = __location__ + 'CMash/scripts/StreamingQueryDNADatabase.py'
-		cmash_proc = subprocess.Popen(['python', script_loc,
+		script_loc = 'StreamingQueryDNADatabase.py'
+		cmash_proc = subprocess.Popen([script_loc,
 			args.temp_dir + '60mers_intersection_dump.fa', cmash_db_loc,
 			cmash_out, '30-60-10', '-c', '0', '-r', '1000000', '-v',
 			'-f', cmash_filter_loc, '--sensitive']).wait()

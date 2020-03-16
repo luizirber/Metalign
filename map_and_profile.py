@@ -424,7 +424,7 @@ def compute_abundances(args, infile, acc2info, tax2info):
 	if args.input_type == 'sam': # input stream from sam file
 		instream = open(infile, 'r')
 	else:  # run minimap2 and stream its output as input
-		mapper = subprocess.Popen([__location__ + 'minimap2/minimap2', '-ax',
+		mapper = subprocess.Popen(['minimap2', '-ax',
 			'sr', '-t', str(args.threads), '-2', '-n' '1', '--secondary=yes',
 			args.db, infile], stdout=subprocess.PIPE, bufsize=1)
 		instream = iter(mapper.stdout.readline, "")
